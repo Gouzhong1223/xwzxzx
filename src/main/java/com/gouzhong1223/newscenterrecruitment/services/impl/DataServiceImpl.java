@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 public class DataServiceImpl implements DataService {
     @Override
     public ResponseDto pushData(JSONObject jsonObject) {
+        //TODO 暂时不知道那边会发什么数据，先不写
         return null;
     }
 }
