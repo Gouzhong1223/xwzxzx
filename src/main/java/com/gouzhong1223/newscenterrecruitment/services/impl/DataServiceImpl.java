@@ -1,8 +1,10 @@
 package com.gouzhong1223.newscenterrecruitment.services.impl;
 
-import com.alibaba.fastjson.JSONObject;
 import com.gouzhong1223.newscenterrecruitment.dto.rep.ResponseDto;
+import com.gouzhong1223.newscenterrecruitment.entity.Student;
+import com.gouzhong1223.newscenterrecruitment.mapper.StudentMapper;
 import com.gouzhong1223.newscenterrecruitment.services.DataService;
+import com.gouzhong1223.newscenterrecruitment.services.MailService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,9 +20,27 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class DataServiceImpl implements DataService {
+
+
+    private final StudentMapper studentMapper;
+    private final MailService mailService;
+
+    public DataServiceImpl(StudentMapper studentMapper, MailService mailService) {
+        this.studentMapper = studentMapper;
+        this.mailService = mailService;
+    }
+
     @Override
-    public ResponseDto pushData(JSONObject jsonObject) {
-        //TODO 暂时不知道那边会发什么数据，先不写
-        return null;
+    public ResponseDto pushData(Student student) {
+        if (studentMapper.selectByPrimaryKey(student.getStudentId()) == null) {
+            try {
+                studentMapper.insertSelective(student);
+                mailService.sendSimpleMail(student.getEmail(), "这是一个标题", student.getStudentName());
+            } catch (Exception e) {
+                return ResponseDto.FAIL();
+            }
+            return ResponseDto.SUCCESS(student);
+        }
+        return ResponseDto.FAIL();
     }
 }

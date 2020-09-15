@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gouzhong1223.newscenterrecruitment.mapper.StudentMapper">
+  <resultMap id="BaseResultMap" type="com.gouzhong1223.newscenterrecruitment.entity.Student">
+    <!--@mbg.generated-->
+    <!--@Table tb_student-->
+    <id column="studentId" jdbcType="INTEGER" property="studentId" />
+    <result column="studentName" jdbcType="VARCHAR" property="studentName" />
+    <result column="studentCollege" jdbcType="VARCHAR" property="studentCollege" />
+    <result column="departments" jdbcType="VARCHAR" property="departments" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    studentId, studentName, studentCollege, departments, email, phone
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from tb_student
+    where studentId = #{studentId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from tb_student
+    where studentId = #{studentId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gouzhong1223.newscenterrecruitment.entity.Student">
+    <!--@mbg.generated-->
+    insert into tb_student (studentId, studentName, studentCollege, 
+      departments, email, phone
+      )
+    values (#{studentId,jdbcType=INTEGER}, #{studentName,jdbcType=VARCHAR}, #{studentCollege,jdbcType=VARCHAR}, 
+      #{departments,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gouzhong1223.newscenterrecruitment.entity.Student">
+    <!--@mbg.generated-->
+    insert into tb_student
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="studentId != null">
+        studentId,
+      </if>
+      <if test="studentName != null and studentName != ''">
+        studentName,
+      </if>
+      <if test="studentCollege != null and studentCollege != ''">
+        studentCollege,
+      </if>
+      <if test="departments != null and departments != ''">
+        departments,
+      </if>
+      <if test="email != null and email != ''">
+        email,
+      </if>
+      <if test="phone != null and phone != ''">
+        phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="studentId != null">
+        #{studentId,jdbcType=INTEGER},
+      </if>
+      <if test="studentName != null and studentName != ''">
+        #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="studentCollege != null and studentCollege != ''">
+        #{studentCollege,jdbcType=VARCHAR},
+      </if>
+      <if test="departments != null and departments != ''">
+        #{departments,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null and email != ''">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null and phone != ''">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gouzhong1223.newscenterrecruitment.entity.Student">
+    <!--@mbg.generated-->
+    update tb_student
+    <set>
+      <if test="studentName != null and studentName != ''">
+        studentName = #{studentName,jdbcType=VARCHAR},
+      </if>
+      <if test="studentCollege != null and studentCollege != ''">
+        studentCollege = #{studentCollege,jdbcType=VARCHAR},
+      </if>
+      <if test="departments != null and departments != ''">
+        departments = #{departments,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null and email != ''">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null and phone != ''">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where studentId = #{studentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gouzhong1223.newscenterrecruitment.entity.Student">
+    <!--@mbg.generated-->
+    update tb_student
+    set studentName = #{studentName,jdbcType=VARCHAR},
+      studentCollege = #{studentCollege,jdbcType=VARCHAR},
+      departments = #{departments,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR}
+    where studentId = #{studentId,jdbcType=INTEGER}
+  </update>
+</mapper>

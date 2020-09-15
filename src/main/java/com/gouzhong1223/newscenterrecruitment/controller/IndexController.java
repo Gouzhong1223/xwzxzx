@@ -2,6 +2,7 @@ package com.gouzhong1223.newscenterrecruitment.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.gouzhong1223.newscenterrecruitment.dto.rep.ResponseDto;
+import com.gouzhong1223.newscenterrecruitment.entity.Student;
 import com.gouzhong1223.newscenterrecruitment.services.DataService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,8 +31,8 @@ public class IndexController {
     }
 
     @PostMapping("pushData")
-    public ResponseDto pushData(@RequestBody JSONObject jsonObject) {
-        return dataService.pushData(jsonObject);
+    public ResponseDto pushData(@RequestBody Student student) {
+        return dataService.pushData(student);
     }
 
 

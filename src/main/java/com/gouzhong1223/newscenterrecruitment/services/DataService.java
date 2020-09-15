@@ -1,7 +1,7 @@
 package com.gouzhong1223.newscenterrecruitment.services;
 
-import com.alibaba.fastjson.JSONObject;
 import com.gouzhong1223.newscenterrecruitment.dto.rep.ResponseDto;
+import com.gouzhong1223.newscenterrecruitment.entity.Student;
 
 /**
  * @Author : Gouzhong
@@ -19,8 +19,8 @@ public interface DataService {
     /**
      * 提交数据
      *
-     * @param jsonObject 前端发送过来的数据
+     * @param student 学生信息
      * @return
      */
-    ResponseDto pushData(JSONObject jsonObject);
+    ResponseDto pushData(Student student);
 }
