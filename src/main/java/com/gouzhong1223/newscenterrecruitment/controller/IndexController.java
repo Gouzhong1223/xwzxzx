@@ -1,6 +1,5 @@
 package com.gouzhong1223.newscenterrecruitment.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.gouzhong1223.newscenterrecruitment.dto.rep.ResponseDto;
 import com.gouzhong1223.newscenterrecruitment.entity.Student;
 import com.gouzhong1223.newscenterrecruitment.services.DataService;
@@ -35,5 +34,19 @@ public class IndexController {
         return dataService.pushData(student);
     }
 
+    public static void main(String[] args) {
+
+    }
+
+    public synchronized void test() throws InterruptedException {
+        Object o = new Object();
+        o.wait();
+        Thread.sleep(1);
+    }
+
+
+    public static synchronized void test2() {
+
+    }
 
 }

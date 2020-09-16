@@ -1,5 +1,6 @@
 package com.gouzhong1223.newscenterrecruitment.services.impl;
 
+import com.gouzhong1223.newscenterrecruitment.common.ResultCode;
 import com.gouzhong1223.newscenterrecruitment.dto.rep.ResponseDto;
 import com.gouzhong1223.newscenterrecruitment.entity.Student;
 import com.gouzhong1223.newscenterrecruitment.mapper.StudentMapper;
@@ -32,15 +33,22 @@ public class DataServiceImpl implements DataService {
 
     @Override
     public ResponseDto pushData(Student student) {
-        if (studentMapper.selectByPrimaryKey(student.getStudentId()) == null) {
+        Student record = studentMapper.selectByPrimaryKey(student.getStudentId());
+        if (record != null) {
+            studentMapper.updateByPrimaryKeySelective(student);
+            mailService.sendSimpleMail(student.getEmail(), "subject", student.getStudentName() + "修改成功！");
+            return new ResponseDto(ResultCode.SUCCESS.getCode(), "修改报名信息成功！", student);
+        } else {
             try {
                 studentMapper.insertSelective(student);
-                mailService.sendSimpleMail(student.getEmail(), "这是一个标题", student.getStudentName());
+                mailService.sendSimpleMail(student.getEmail(), "subject", student.getStudentName());
+                return ResponseDto.SUCCESS(student);
             } catch (Exception e) {
                 return ResponseDto.FAIL();
             }
-            return ResponseDto.SUCCESS(student);
         }
-        return ResponseDto.FAIL();
     }
+
 }
+
+

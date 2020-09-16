@@ -21,13 +21,13 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class StudentMapperTest  {
+public class StudentMapperTest {
 
     @Autowired
     private StudentMapper studentMapper;
 
     @Test
-    public void test01(){
+    public void test01() {
         Student student = new Student(1, "11", "111", "111", "111", "1111");
         studentMapper.insertSelective(student);
     }
