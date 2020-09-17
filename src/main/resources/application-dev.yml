@@ -4,7 +4,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/newscenterrecruitment?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+      url: jdbc:mysql://cdb-ptjmt4tm.bj.tencentcdb.com:10118/newscenterrecruitment?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
       username: root
       password: Aabc123456789
       filters: stat,wall,log4j,config
